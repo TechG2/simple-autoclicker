@@ -1,6 +1,5 @@
 #include <Windows.h>
 #include <iostream>
-#include <unistd.h>
 #include "../other/values/values.h"
 #include "../screens/menu/menu.h"
 
@@ -44,7 +43,7 @@ public:
         if (getStatus() == ClickerStatusesType::EnableClicker)
         {
             int disableShortcut = getShortcut(ShortcutsType::Disable);
-            int delay = 10000;
+            int delay = 10;
 
             while (true)
             {
@@ -57,9 +56,10 @@ public:
                     }
 
                     mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+                    Sleep(10);
                     mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
 
-                    usleep((1000000 - delay) / cps);
+                    Sleep((1000 - delay) / cps);
                 }
             }
         }
